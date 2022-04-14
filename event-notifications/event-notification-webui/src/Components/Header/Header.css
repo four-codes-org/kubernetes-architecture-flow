@@ -1,8 +1,9 @@
 #center_heading {
-  background-color: #48A8D0;
+  background-color: #000000;
 }
 .header {
   padding: 8px;
   text-align: center;
   font-size: 23px;
+  color: white;
 }
