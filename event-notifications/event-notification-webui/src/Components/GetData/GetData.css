@@ -1,0 +1,30 @@
+.events {
+  margin: 60px 5px 10px 5px;
+  font-size: 10px;
+}
+
+.event_details {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+  padding-right: 500px;
+}
+
+td {
+  border: 1px solid black;
+  width: 20px;
+  padding-left: 5px;
+}
+tr {
+  width: 100%;
+}
+th {
+  padding: 5px 3px;
+  background-color: rgba(41, 207, 138, 0.87);
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:hover {
+  background-color: #ddd;
+}
