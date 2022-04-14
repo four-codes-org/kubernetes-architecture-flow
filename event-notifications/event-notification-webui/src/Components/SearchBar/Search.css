@@ -1,0 +1,25 @@
+.Search {
+  position: absolute;
+  white-space: nowrap;
+  margin: 5px 400px;  
+  align-items: center;
+  
+}
+#header_search{
+  width: 500px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  box-shadow: 2px 2px lightgrey;
+}
+.Search button{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  width: 70px;
+  margin-left:5px;
+  box-shadow: 2px 2px lightgrey;
+  background-color: white;
+  cursor: pointer;
+
+}
