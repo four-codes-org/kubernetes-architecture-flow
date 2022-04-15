@@ -18,14 +18,18 @@ sequelize.sync();
 const event_route = require("./route/event_route");
 app.use("/events", event_route);
 
-app.get("/", (req, res) =>
-  res.json({
-    message:
-      "Welcome to dodo-foundation event-notification-backend application.",
-  })
-);
 
-const PORT = process.env.PORT || 4000;
+app.get("/", (req, res) => {
+  res.send(
+    JSON.stringify({
+      Date: new Date().toUTCString(),
+      status: 200,
+      message: "Running!!!",
+    })
+  );
+});
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
