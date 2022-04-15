@@ -58,7 +58,7 @@ spec:
                 fieldRef:
                   fieldPath: spec.serviceAccountName
             - name: EVENT_NOTIFICATION_SERVER
-              value: 'notification-events-db:8080'
+              value: "notification-events-db:8080"
           lifecycle:
             postStart:
               exec:
@@ -68,7 +68,7 @@ spec:
                   - |
                     curl -H "Content-Type: application/json" \
                     -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod started"}' \
-                     -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
+                    -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
             preStop:
               exec:
                 command:
@@ -77,4 +77,4 @@ spec:
                   - |
                     curl -H "Content-Type: application/json" \
                     -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod deleted"}' \
-                     -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
+                    -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
