@@ -1,0 +1,80 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: notification-events-db
+spec:
+  type: ExternalName
+  externalName: notification.notification.svc.cluster.local
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lifecycle
+  labels:
+    notification: enabled
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 4
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: webserver
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+    spec:
+      containers:
+        - name: lifecycle
+          image: nginx
+          terminationMessagePath: "/tmp/termination.log"
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+            - name: EVENT_NOTIFICATION_SERVER
+              value: 'notification-events-db:8080'
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - |
+                    curl -H "Content-Type: application/json" \
+                    -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod started"}' \
+                     -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - -c
+                  - |
+                    curl -H "Content-Type: application/json" \
+                    -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod deleted"}' \
+                     -X POST http://$EVENT_NOTIFICATION_SERVER/events/create
