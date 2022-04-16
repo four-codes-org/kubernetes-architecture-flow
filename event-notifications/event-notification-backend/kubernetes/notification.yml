@@ -1,0 +1,141 @@
+########################################
+#       NOTIFICATION DEPLOYMENT        #
+########################################
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: notification
+  labels:
+    notification: disabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  namespace: notification
+  labels:
+    notification: disabled
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: notification
+  template:
+    metadata:
+      name: web
+      labels:
+        role: notification
+    spec:
+      containers:
+        - name: notification
+          image: jjino/event-notification
+          ports:
+            - name: notification
+              containerPort: 8080
+              protocol: TCP
+          terminationMessagePath: "/tmp/termination.log"
+          env:
+            - name: DB_HOST
+              value: notification-db
+            - name: DB_USERNAME
+              value: events
+            - name: DB_PASSWORD
+              value: events
+            - name: DB_NAME
+              value: events
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+  namespace: notification
+  labels:
+    role: notification
+spec:
+  type: ClusterIP
+  selector:
+    role: notification
+  ports:
+    - port: 8080
+
+########################################
+#          MYSQL DEPLOYMENT            #
+########################################
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-db
+  namespace: notification
+  labels:
+    notification: disabled
+spec:
+  selector:
+    matchLabels:
+      app: events-db
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: events-db
+        tier: mysql
+    spec:
+      containers:
+        - image: mysql:5.7
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: events
+            - name: MYSQL_DATABASE
+              value: events
+            - name: MYSQL_USER
+              value: events
+            - name: MYSQL_PASSWORD
+              value: events
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-db
+  namespace: notification
+  labels:
+    notification: disabled
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+  selector:
+    app: events-db
+    tier: mysql

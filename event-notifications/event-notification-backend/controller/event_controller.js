@@ -7,9 +7,11 @@ const postEvents = (req, res) => {
   events
     .then((data) => res.send(data))
     .catch((err) => {
-      res.status(500).send({
-        message: err,
-      });
+      res.status(500).send(
+        JSON.stringify({
+          message: err,
+        })
+      );
     });
 };
 
@@ -20,9 +22,12 @@ const getEvents = async (req, res) => {
       res.send(result);
     })
     .catch((error) => {
-      res.status(500).send({
-        message: error.message || "Some error occurred while retrieving event.",
-      });
+      res.status(500).send(
+        JSON.stringify({
+          message:
+            error.message || "Some error occurred while retrieving event."
+        })
+      );
     });
 };
 
