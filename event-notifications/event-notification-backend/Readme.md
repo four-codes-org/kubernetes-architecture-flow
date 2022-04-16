@@ -1,8 +1,12 @@
 #### Event-notification-backend
 
-`this is application design to store the events, based on the success and failure.`
+This is an application designed to save events based on success and failure. In the future, we should implement notification alerts based on the scope.
 
-Evironment variables
+**Evironment variables**
+
+This event notification application will use a database as a Mysql service, either on-premises or in the cloud. It is up to us to handle events and store them somewhere.
+
+**Environment values**
 
 | Key         | Value | Required | Description |
 | ----------- | ----- | -------- | ----------- |
@@ -10,26 +14,49 @@ Evironment variables
 | DB_HOST     | " "   | yes      | Database    |
 | DB_USERNAME | " "   | yes      | Database    |
 | DB_PASSWORD | " "   | yes      | Database    |
-| PORT        | 4000  | no       | Application |
+| PORT        | 8080  | no       | Application |
+
+**Runtime Environment variables**
 
 How to set environment variables in linux
 
-    export DB_NAME=""
-    export DB_HOST=""
-    export DB_USERNAME=""
-    export DB_PASSWORD=""
+```bash
+export DB_NAME=""
+export DB_HOST=""
+export DB_USERNAME=""
+export DB_PASSWORD=""
+```
 
-In the project directory, you can run
+**How to run this application?**
 
-    npm install
-    node main.js
+You can run the project directory as a normal service in linux terminal.
 
-Docker build and run the following command
+```bash
+npm install
+node main.js
+```
+**api call process**
 
-    docker build -t event-notification .
-    docker run -d -p 4000:40000 --name event-notification event-notification
+Provide two types of operations in this application.
 
-Docker compose command
+1. POST METHOD - `http://URL/events/create`
+2. GET METHOD - `http://URL/events`
+
+**Docker build and run the following command**
+
+```bash
+docker build -t event-notification:v1.0 .
+docker run -d -p 8080:8080 --name event-notification event-notification:v1.0
+```
+**Docker push images**
+
+```bash
+docker login 
+docker tag event-notification:v1.0 jjino/event-notification:v1.0
+docker push jjino/event-notification:v1.0
+```
+
+**Docker compose command**
 
 ```yml
 # vim docker-compose.yml
@@ -47,11 +74,11 @@ services:
       MYSQL_USER: events
       MYSQL_PASSWORD: events
   events:
-    image: jjino/event-notification
+    image: jjino/event-notification:v1.0
     depends_on:
       - database
     ports:
-      - "80:4000"
+      - "8080:8080"
     restart: always
     networks:
       - events
@@ -67,13 +94,18 @@ volumes:
   events:
 ```
 
-Requests
+**`curl` command is used to raise requests**
 
 ```bash
-curl -X POST -d '{ "name": "fourtimes", "sports": "cricket" }' "http://ado.dodonotdo.in/events/create"  -H "Content-Type: application/json"
+curl \
+  -X POST  \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "fourtimes", "sports": "cricket" }' \
+  "http://localhost:8080/events/create"  
+
 ```
 
-kubernetes life-cycle process
+**kubernetes life-cycle process**
 
 ```yml
 # https://github.com/kubernetes-client/javascript
@@ -115,7 +147,7 @@ spec:
               - sh
               - -c
               - |
-                curl -H "Content-Type: application/json" -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod started"}' -X POST http://ado.dodonotdo.in/events/create
+                curl -H "Content-Type: application/json" -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod started"}' -X POST http://localhost:8080/events/create
         preStop:
           exec:
             command:
@@ -123,7 +155,8 @@ spec:
               - -c
               - |
                 reason=`cat /tmp/termination.log`
-                curl -H "Content-Type: application/json" -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod deleted"}' -X POST http://ado.dodonotdo.in/events/create
+                curl -H "Content-Type: application/json" -d '{"Namespace": "'$POD_NAMESPACE'", "POD": "'$POD_NAME'", "POD_IP": "'$POD_IP'", "RUNNING_POD_HOSTNAME": "'$NODE_NAME'", "STATUS": "Pod deleted"}' -X POST http://localhost:8080/events/create
 ```
 
+**output**
 ![kubernetes notification](https://user-images.githubusercontent.com/57703276/142879784-c21c3855-8b1d-4c8e-a78b-b6f7448e19a5.png)
