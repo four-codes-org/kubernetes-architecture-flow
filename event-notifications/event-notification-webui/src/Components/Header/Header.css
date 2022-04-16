@@ -1,9 +1,10 @@
 #center_heading {
-  background-color: #000000;
+  border-bottom: 1px  solid lightgrey;
+  box-shadow: 0 4px 6px -6px #222;
 }
 .header {
   padding: 8px;
   text-align: center;
   font-size: 23px;
-  color: white;
+  /* color: white; */
 }

@@ -1,57 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./GetData.css";
-class GetData extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-  }
-  componentWillMount() {
-    setInterval(() => {
-      fetch("http://localhost:4000/events/")
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-            items: json,
-          });
-        });
-    }, 500);
-  }
-  render() {
-    const { items } = this.state;
-    return (
-      <div className="events">
-        <table className="event_details">
-          <tr>
-            <th>UUID</th>
-            <th>CREATED_TIME</th>
-            <th>DETAILS</th>
-            
-          </tr>
-          {items.map((item) => {
-            return (
-              <tr key={item.uuid}>
-              
-                <td>{item.uuid}</td>
-                <td>{item.createdAt}</td>
-                {/* <td>{JSON.stringify(item.event_details.POD)}</td>
-                <td>{JSON.stringify(item.event_details.POD_IP)}</td>
-                <td>{JSON.stringify(item.event_details.STATUS)}</td>
-                <td>{JSON.stringify(item.event_details.NAMESPACE)}</td> */}
-                {/* <td>
-                  {JSON.stringify(item.event_details.RUNNING_POD_HOSTNAME)}
-                </td> */}
 
-                <td>{JSON.stringify(item.event_details)}</td>
-                
-              </tr>
-            );
-          })}
-        </table>
-      </div>
-    );
-  }
+function GetData() {
+  const [data, getData] = useState([]);
+  const URL = "http://localhost:4000/events/";
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((response) => {
+        // var results = JSON.stringify(response, undefined, 2);
+        // var results2 = results.replace(/[ ]/g, "&nbsp;");
+        // console.log(results);
+        // console.log(results2)
+        getData(response);
+        console.log(response);
+      });
+  };
+
+  return (
+    <div className="events">
+      <table>
+        <tr>
+          <th>UUID</th>
+          <th>CREATED_TIME</th>
+          <th>DETAILS</th>
+        </tr>
+        {data.map((item, i) => (
+          <tr key={i}>
+            <td>{item.uuid}</td>
+            <td>{item.createdAt}</td>
+            <td className="q">{JSON.stringify(item.event_details)}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  );
 }
 
 export default GetData;
