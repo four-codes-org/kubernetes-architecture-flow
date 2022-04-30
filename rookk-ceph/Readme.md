@@ -2,7 +2,6 @@
 
 ![image](https://user-images.githubusercontent.com/57703276/166111720-581f221a-f2fe-430b-9e56-469c8115d051.png)
 
-
 ---
 
 **Foundation**
@@ -57,9 +56,9 @@ kubectl label node tscout-worker3 cephnode=true
 
 ![image](https://user-images.githubusercontent.com/57703276/166091296-d4631dd5-92f4-4f38-a727-537292f9f9eb.png)
 
+**Cluster Environments**
 
-
-
+* Cluster settings for a production cluster running on bare metal. Requires at least three worker nodes.
 
 **installation**
 
