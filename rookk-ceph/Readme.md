@@ -27,6 +27,16 @@ In order to configure the Ceph storage cluster, at least one of these `local sto
 | worker2 |192.168.0.4 |50GB |50GB|
 | worker3 |192.168.0.5 |50GB |50GB|
 
+**Disk details**
+
+Your worker nodes should resemble.
+
+* `sda` is root disk
+* `sdb` is additional volume
+
+![image](https://user-images.githubusercontent.com/57703276/166091705-4ee5056f-2435-47eb-ab59-54289049fb70.png)
+
+
 **worker node details**
 
 ![image](https://user-images.githubusercontent.com/57703276/166090888-d1759814-319d-4204-bd5f-7af071f879ce.png)
