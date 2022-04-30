@@ -75,6 +75,8 @@ git clone --single-branch --branch v1.9.2 https://github.com/rook/rook.git
 cd rook/deploy/examples
 kubectl create -f crds.yaml -f common.yaml -f operator.yaml
 ```
+![image](https://user-images.githubusercontent.com/57703276/166111270-1634c378-cfe4-444e-b73f-6b90d2067c5d.png)
+
 
 ```bash
 kubectl create -f cluster.yaml
@@ -86,7 +88,6 @@ kubectl get po -n rook-ceph
 ```
 
 ![image](https://user-images.githubusercontent.com/57703276/166090821-af020227-be27-4d08-903c-3d6c4cbdf9d8.png)
-
 
 
 
