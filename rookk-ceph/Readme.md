@@ -140,12 +140,88 @@ ceph number of nodes cluster status
 
 ![image](https://user-images.githubusercontent.com/57703276/166113188-b989d5b3-54b5-4e62-864e-8ad6246c7a10.png)
 
+**Block Storage**
 
+Block storage allows a single pod to mount storage. This guide shows how to create a simple, multi-tier web application on Kubernetes using persistent volumes enabled by Rook.
 
+storageclass.yaml file
 
+```yml
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: replicapool
+  namespace: rook-ceph
+spec:
+  failureDomain: host
+  replicated:
+    size: 3
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+   name: rook-ceph-block
+# Change "rook-ceph" provisioner prefix to match the operator namespace if needed
+provisioner: rook-ceph.rbd.csi.ceph.com
+parameters:
+    # clusterID is the namespace where the rook cluster is running
+    clusterID: rook-ceph
+    # Ceph pool into which the RBD image shall be created
+    pool: replicapool
 
+    # (optional) mapOptions is a comma-separated list of map options.
+    # For krbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd/#kernel-rbd-krbd-options
+    # For nbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd-nbd/#options
+    # mapOptions: lock_on_read,queue_depth=1024
 
+    # (optional) unmapOptions is a comma-separated list of unmap options.
+    # For krbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd/#kernel-rbd-krbd-options
+    # For nbd options refer
+    # https://docs.ceph.com/docs/master/man/8/rbd-nbd/#options
+    # unmapOptions: force
 
+    # RBD image format. Defaults to "2".
+    imageFormat: "2"
 
+    # RBD image features. Available for imageFormat: "2". CSI RBD currently supports only `layering` feature.
+    imageFeatures: layering
 
+    # The secrets contain Ceph admin credentials.
+    csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+    csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
 
+    # Specify the filesystem type of the volume. If not specified, csi-provisioner
+    # will set default as `ext4`. Note that `xfs` is not recommended due to potential deadlock
+    # in hyperconverged settings where the volume is mounted on the same node as the osds.
+    csi.storage.k8s.io/fstype: ext4
+
+# Delete the rbd volume when a PVC is deleted
+reclaimPolicy: Delete
+
+# Optional, if you want to add dynamic resize for PVC.
+# For now only ext3, ext4, xfs resize support provided, like in Kubernetes itself.
+allowVolumeExpansion: true
+```
+
+Create the storage class form rook-ceph cluster 
+
+```bash
+# copy the content from above the refernece file
+kubectl create -f storageclass.yaml
+```
+
+**valiation**
+
+```bash
+k get CephBlockPool
+k get sc
+```
+
+![image](https://user-images.githubusercontent.com/57703276/166113657-f5428935-f00f-414c-990b-7cb95f66ed28.png)
