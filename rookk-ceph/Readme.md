@@ -77,6 +77,16 @@ kubectl create -f crds.yaml -f common.yaml -f operator.yaml
 ```
 ![image](https://user-images.githubusercontent.com/57703276/166111270-1634c378-cfe4-444e-b73f-6b90d2067c5d.png)
 
+**cluster installtion**
+
+In this scenario, I will use an unformatted sdb disc with no fstab entries in Oracle Cloud.
+
+* sdb
+* kubernetes label cephnode=true
+* dashboard disabled
+* prometheus metric enabled
+
+You can use the 'cluster.yml.md' file as a reference.
 
 ```bash
 kubectl create -f cluster.yaml
