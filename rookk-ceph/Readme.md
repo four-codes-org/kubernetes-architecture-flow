@@ -36,6 +36,12 @@ worker node details
 
 In this scenario, I'm utilising the Raw devices (no partitions or formatted filesystems).
 
+**operator consideration**
+
+* Consider if you want to enable certain Rook features that are disabled by default. See the operator.yaml for these and other advanced settings.
+  * Device discovery: Rook will watch for new devices to configure if the `ROOK_ENABLE_DISCOVERY_DAEMON` setting is enabled, commonly used in bare metal clusters.
+  * Node affinity and tolerations: The CSI driver by default will run on any node in the cluster. To configure the CSI driver affinity, several settings are available.
+
 ```bash
 git clone --single-branch --branch v1.9.2 https://github.com/rook/rook.git
 cd rook/deploy/examples
