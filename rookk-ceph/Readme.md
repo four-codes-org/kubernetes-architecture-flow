@@ -22,14 +22,30 @@ In order to configure the Ceph storage cluster, at least one of these `local sto
 
 |server| ipaddress | root volume | add volume |
 |---|---|---|---|
-| master1 |192.168.0.2 |50GB|NA|
+| master |192.168.0.2 |50GB|NA|
 | worker1 |192.168.0.3 |50GB|50GB
 | worker2 |192.168.0.4 |50GB |50GB|
 | worker3 |192.168.0.5 |50GB |50GB|
 
-worker node details
+**worker node details**
 
 ![image](https://user-images.githubusercontent.com/57703276/166090888-d1759814-319d-4204-bd5f-7af071f879ce.png)
+
+```bash
+kubectl label node tscout-worker1 kubernetes.io/role=worker
+kubectl label node tscout-worker2 kubernetes.io/role=worker
+kubectl label node tscout-worker3 kubernetes.io/role=worker
+
+# this is require for rook-ceph cluster 
+kubectl label node tscout-worker1 cephnode=true
+kubectl label node tscout-worker2 cephnode=true
+kubectl label node tscout-worker3 cephnode=true
+```
+
+![image](https://user-images.githubusercontent.com/57703276/166091296-d4631dd5-92f4-4f38-a727-537292f9f9eb.png)
+
+
+
 
 
 **installation**
@@ -42,10 +58,15 @@ In this scenario, I'm utilising the Raw devices (no partitions or formatted file
   * Device discovery: Rook will watch for new devices to configure if the `ROOK_ENABLE_DISCOVERY_DAEMON` setting is enabled, commonly used in bare metal clusters.
   * Node affinity and tolerations: The CSI driver by default will run on any node in the cluster. To configure the CSI driver affinity, several settings are available.
 
+**operator installation**
+
 ```bash
 git clone --single-branch --branch v1.9.2 https://github.com/rook/rook.git
 cd rook/deploy/examples
 kubectl create -f crds.yaml -f common.yaml -f operator.yaml
+```
+
+```bash
 kubectl create -f cluster.yaml
 ```
 **installation output**
