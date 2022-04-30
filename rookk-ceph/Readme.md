@@ -1,5 +1,8 @@
 #### Rook-Ceph storage cluster
 
+![image](https://user-images.githubusercontent.com/57703276/166111720-581f221a-f2fe-430b-9e56-469c8115d051.png)
+
+
 ---
 
 **Foundation**
