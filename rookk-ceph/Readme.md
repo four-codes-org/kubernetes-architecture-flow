@@ -120,7 +120,14 @@ open the toolbox terminal
 
 ![image](https://user-images.githubusercontent.com/57703276/166113084-267b472d-23fc-428f-99a1-a869156b6488.png)
 
-check the cluster status
+To verify that the cluster is in a healthy state, connect to the Rook toolbox and run the ceph status command.
+
+cluster status
+
+* All mons should be in quorum
+* A mgr should be active
+* At least one OSD should be active
+* If the health is not HEALTH_OK, the warnings or errors should be investigated
 
 ![image](https://user-images.githubusercontent.com/57703276/166113109-c9056a86-c80e-4706-b700-d192a9d2df07.png)
 
