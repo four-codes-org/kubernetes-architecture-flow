@@ -4,8 +4,9 @@ kubernetes-architecture-flow end to end
 
 to get ready for the Kubernetes integration
 
-    1. Event Notifications
-    2. Log Tracing
-    3. Gatekeeper
-    4. Prometheus
-    5. Hashicorp vault
+    1. Event Notifications  - events 
+    2. Log Tracing          - application tracing
+    3. Gatekeeper           - policy checker
+    4. Prometheus           - monitor
+    5. Hashicorp vault      - secret management 
+    6. rook-ceph            - storage cluster
