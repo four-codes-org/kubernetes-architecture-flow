@@ -91,6 +91,7 @@ In this scenario, I will use an unformatted sdb disc with no fstab entries in Or
 You can use the 'cluster.yml.md' file as a reference.
 
 ```bash
+cd ~/rook/deploy/examples
 kubectl create -f cluster.yaml
 ```
 **installation output**
@@ -102,6 +103,35 @@ kubectl get po -n rook-ceph
 ![image](https://user-images.githubusercontent.com/57703276/166090821-af020227-be27-4d08-903c-3d6c4cbdf9d8.png)
 
 
+**validation**
+
+Once installed the ceph cluster you have verify the confihguration use tool.yaml
+
+**installtion of tools**
+
+```yaml
+cd ~/rook/deploy/examples
+kubectl create -f toolbox.yaml
+```
+
+![image](https://user-images.githubusercontent.com/57703276/166112442-772a2514-d58a-4166-80f5-fa357f9d50cf.png)
+
+open the toolbox terminal
+
+![image](https://user-images.githubusercontent.com/57703276/166113084-267b472d-23fc-428f-99a1-a869156b6488.png)
+
+check the cluster status
+
+![image](https://user-images.githubusercontent.com/57703276/166113109-c9056a86-c80e-4706-b700-d192a9d2df07.png)
+
+ceph number of nodes cluster status
+
+![image](https://user-images.githubusercontent.com/57703276/166113141-7a8959f4-34ea-42e9-85c5-d537fb6e83aa.png)
+
+![image](https://user-images.githubusercontent.com/57703276/166113164-27caccb2-6aa3-445a-86d8-17a22828bdfe.png)
+
+
+![image](https://user-images.githubusercontent.com/57703276/166113188-b989d5b3-54b5-4e62-864e-8ad6246c7a10.png)
 
 
 
