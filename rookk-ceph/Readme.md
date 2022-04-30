@@ -27,6 +27,11 @@ In order to configure the Ceph storage cluster, at least one of these `local sto
 | worker2 |192.168.0.4 |50GB |50GB|
 | worker3 |192.168.0.5 |50GB |50GB|
 
+worker node details
+
+![image](https://user-images.githubusercontent.com/57703276/166090888-d1759814-319d-4204-bd5f-7af071f879ce.png)
+
+
 **installation**
 
 In this scenario, I'm utilising the Raw devices (no partitions or formatted filesystems).
