@@ -1004,9 +1004,9 @@ spec:
               'ceph crash archive <id>' command.
               
     # ceph pvc
-    - name: persistent-volume-alert.rules
+    - name: rook-ceph-persistent-volume-alert.rules
       rules:
-        - alert: PersistentVolumeUsageNearFull
+        - alert: RookCephPersistentVolumeUsageNearFull
           annotations:
             description: PVC {{ $labels.persistentvolumeclaim }} utilization has crossed 75%. Free up some space or expand the PVC.
             message: PVC {{ $labels.persistentvolumeclaim }} is nearing full. Data deletion or PVC expansion is required.
@@ -1017,7 +1017,7 @@ spec:
           for: 5s
           labels:
             severity: warning
-        - alert: PersistentVolumeUsageCritical
+        - alert: RookCephPersistentVolumeUsageCritical
           annotations:
             description: PVC {{ $labels.persistentvolumeclaim }} utilization has crossed 85%. Free up some space or expand the PVC immediately.
             message: PVC {{ $labels.persistentvolumeclaim }} is critically full. Data deletion or PVC expansion is required.
