@@ -38,6 +38,35 @@ spec:
   - port: http-metrics
     path: /metrics
     interval: 5s
+```
+
+csi driver monitor
+
+```yml
+# ceph-cluster-prometheus-csi-service-monitor.yml
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: csi-metrics
+  namespace: rook-ceph
+  labels:
+    release: prometheus-grafana
+spec:
+  namespaceSelector:
+    matchNames:
+      - rook-ceph
+  selector:
+    matchLabels:
+      app: csi-metrics
+  endpoints:
+    - port: csi-http-metrics
+      path: /metrics
+      interval: 5s
+# comment csi-grpc-metrics realated information if csi grpc metrics is not enabled
+#   - port: csi-grpc-metrics
+#     path: /metrics
+#     interval: 5s
 
 ```
 
