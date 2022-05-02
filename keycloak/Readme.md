@@ -530,9 +530,24 @@ test:
 # https://github.com/codecentric/helm-charts/tree/master/charts/keycloak#prometheus-metrics-support
 ```
 
+installtion 
+
+```bash
+kubectl create identity
+helm repo add codecentric https://codecentric.github.io/helm-charts
+
+# get the values yaml file and modified accoirding to your configuaration
+helm show values codecentric/keycloak > keycloak-values.yml
+
+helm install keycloak codecentric/keycloak -f key-values.yml
+ ```
 
 ![image](https://user-images.githubusercontent.com/57703276/166217483-92fb2621-480f-4b35-9b2a-76ccbc0a661f.png)
 
+
+```bash
+kubectl port-forward svc/keycloak-http 9090:80 --address 0.0.0.0 -n identity
+```
 
 ![image](https://user-images.githubusercontent.com/57703276/166217564-76e09012-12ea-4476-ad72-f681d68af3f3.png)
 
