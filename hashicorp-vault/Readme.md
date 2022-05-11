@@ -25,7 +25,7 @@ _Installation of vault cluster with raft via helm charts_
 
 ```
 
-_Initiate the cluster_
+_Initiate the vault_
 
 ```bash
 
