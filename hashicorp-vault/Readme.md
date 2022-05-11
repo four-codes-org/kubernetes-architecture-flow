@@ -19,20 +19,29 @@ _Injecting Secrets into Kubernetes Pods via Vault Helm Sidecar_
 _Installation of vault cluster with raft via helm charts_
 
 ```bash
+
 ```
 
 _Initiate the cluster_
 
 ```bash
+
 ```
 
 _create the secrets and policies_
 
 ```bash
+
 ```
 
 _Enabled the kubernetes authentication in vault_
 
 ```bash
+
 ```
 
+_create the demo pods to inject the credentials from hashicorp vault server_
+
+```bash
+
+```
