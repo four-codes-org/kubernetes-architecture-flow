@@ -14,7 +14,10 @@ Hashicorp vault has contains three important features
 _Injecting Secrets into Kubernetes Pods via Vault Helm Sidecar_
 ---
 
+_Prepare the vault values.yml file_
 
+```bah
+```
 
 _Installation of vault cluster with raft via helm charts_
 
