@@ -16,9 +16,6 @@ Policy enforcement is captured using Kubernetes events. Kyverno also reports pol
 
 The picture below shows the high-level architecture for Kyverno:
 
-
-**_Process flow_**
-
 ![image](https://user-images.githubusercontent.com/57703276/168957094-c0afaf04-3fec-483f-aa0f-0af48d51f58c.png)
 
 
