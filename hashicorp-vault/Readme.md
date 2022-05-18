@@ -11,12 +11,12 @@ Hashicorp vault has contains three important features
 
 `In this case we are going to implement two types of approaches`
 
-_Injecting Secrets into Kubernetes Pods via Vault Helm Sidecar_
+_Injecting Secrets into Kubernetes Pods via csi driver_
 ---
 
 _Prepare the vault values.yml file_
 
-```bah
+```yaml
 # Available parameters and their default values for the Vault chart.
 
 global:
