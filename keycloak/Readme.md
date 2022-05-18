@@ -542,24 +542,6 @@ helm show values codecentric/keycloak > keycloak-values.yml
 helm install keycloak codecentric/keycloak -f key-values.yml
  ```
 
-![image](https://user-images.githubusercontent.com/57703276/166217483-92fb2621-480f-4b35-9b2a-76ccbc0a661f.png)
-
-
 ```bash
 kubectl port-forward svc/keycloak-http 9090:80 --address 0.0.0.0 -n identity
 ```
-
-![image](https://user-images.githubusercontent.com/57703276/166217564-76e09012-12ea-4476-ad72-f681d68af3f3.png)
-
-
-
-![image](https://user-images.githubusercontent.com/57703276/166217631-488e1b5c-bfe9-4745-8c73-9065a2d8eb3c.png)
-
-
-
-![image](https://user-images.githubusercontent.com/57703276/166217673-e12885f1-4475-4e10-b5ab-a39724897725.png)
-
-
-![image](https://user-images.githubusercontent.com/57703276/166217714-1e23ad56-c1a7-41ec-89e9-eb1729fd5c62.png)
-
-
