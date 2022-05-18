@@ -4,6 +4,12 @@ https://kyverno.io/docs
 
 ---
 
+_Process flow_
+
+![image](https://user-images.githubusercontent.com/57703276/168957094-c0afaf04-3fec-483f-aa0f-0af48d51f58c.png)
+
+
+_installtion via helm_
 
 ```bash
 # Add the Helm repository
