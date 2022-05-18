@@ -4,7 +4,7 @@ https://kyverno.io/docs
 
 ---
 
-_How Kyverno works_
+**_How Kyverno works_**
 
 Kyverno runs as a dynamic admission controller in a Kubernetes cluster. Kyverno receives validating and mutating admission webhook HTTP callbacks from the kube-apiserver and applies matching policies to return results that enforce admission policies or reject requests.
 
@@ -17,12 +17,12 @@ Policy enforcement is captured using Kubernetes events. Kyverno also reports pol
 The picture below shows the high-level architecture for Kyverno:
 
 
-_Process flow_
+**_Process flow_**
 
 ![image](https://user-images.githubusercontent.com/57703276/168957094-c0afaf04-3fec-483f-aa0f-0af48d51f58c.png)
 
 
-_installtion via helm_
+**_installtion via helm_**
 
 ```bash
 # Add the Helm repository
@@ -36,8 +36,7 @@ helm install kyverno kyverno/kyverno -n kyverno --create-namespace
 
 ```
 
-
-_cluster policy_
+**_cluster policy_**
 
 ```yaml
 ---
