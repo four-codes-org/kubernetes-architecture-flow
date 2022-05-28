@@ -53,15 +53,16 @@ serviceAccount:
   imagePullSecrets: []
 
 rbac:
-  create: true
-  rules:
-    - apiGroups:
-        - ""
-      resources:
-        - pods
-      verbs:
-        - get
-        - list
+  create: false
+  rules: []
+  # RBAC rules for KUBE_PING
+  #  - apiGroups:
+  #      - ""
+  #    resources:
+  #      - pods
+  #    verbs:
+  #      - get
+  #      - list
 
 # SecurityContext for the entire Pod. Every container running in the Pod will inherit this SecurityContext. This might be relevant when other components of the environment inject additional containers into running Pods (service meshes are the most prominent example for this)
 podSecurityContext:
