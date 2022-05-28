@@ -302,7 +302,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     ## Resolve HTTP 502 error using ingress-nginx:
     ## See https://www.ibm.com/support/pages/502-error-ingress-keycloak-response
-    # nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
 
   # Additional Ingress labels
   labels: {}
