@@ -10,7 +10,7 @@ fullnameOverride: ""
 nameOverride: ""
 
 # The number of replicas to create (has no effect if autoscaling enabled)
-replicas: 1
+replicas: 3
 
 image:
   # The Keycloak image repository
@@ -53,16 +53,15 @@ serviceAccount:
   imagePullSecrets: []
 
 rbac:
-  create: false
-  rules: []
-  # RBAC rules for KUBE_PING
-  #  - apiGroups:
-  #      - ""
-  #    resources:
-  #      - pods
-  #    verbs:
-  #      - get
-  #      - list
+  create: true
+  rules:
+    - apiGroups:
+        - ""
+      resources:
+        - pods
+      verbs:
+        - get
+        - list
 
 # SecurityContext for the entire Pod. Every container running in the Pod will inherit this SecurityContext. This might be relevant when other components of the environment inject additional containers into running Pods (service meshes are the most prominent example for this)
 podSecurityContext:
@@ -116,6 +115,14 @@ extraEnv: |
     value:  "true"
   - name: "KEYCLOAK_STATISTICS"
     value: "all"
+  - name: JGROUPS_DISCOVERY_PROTOCOL
+    value: dns.DNS_PING
+  - name: JGROUPS_DISCOVERY_PROPERTIES
+    value: 'dns_query={{ include "keycloak.serviceDnsName" . }}'
+  - name: CACHE_OWNERS_COUNT
+    value: "3"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "3"
   # - name: WILDFLY_LOGLEVEL
   #   value: DEBUG
   # - name: CACHE_OWNERS_COUNT
