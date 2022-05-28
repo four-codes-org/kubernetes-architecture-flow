@@ -552,7 +552,18 @@ helm install keycloak codecentric/keycloak -f key-values.yml
 helm upgrade keycloak codecentric/keycloak -f keycloak-values.yml
 
  ```
+_verification_
 
 ```bash
+
 kubectl port-forward svc/keycloak-http 9090:80 --address 0.0.0.0 -n identity
+
+```
+
+_console realm access_
+
+```bash
+
+http://identity.tiscout.co/auth/admin/fourtimes/console
+
 ```
