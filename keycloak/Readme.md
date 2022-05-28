@@ -548,6 +548,9 @@ helm repo add codecentric https://codecentric.github.io/helm-charts
 helm show values codecentric/keycloak > keycloak-values.yml
 
 helm install keycloak codecentric/keycloak -f key-values.yml
+
+helm upgrade keycloak codecentric/keycloak -f keycloak-values.yml
+
  ```
 
 ```bash
