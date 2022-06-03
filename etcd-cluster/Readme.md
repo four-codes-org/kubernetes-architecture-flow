@@ -22,7 +22,8 @@ DOWNLOAD_URL=${GOOGLE_URL}
 
 curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
 sudo tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /usr/local/bin/ --strip-components=1
-rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+rm -rf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+rm -rf /usr/local/bin/README*
 
 etcd --version
 etcdctl version
