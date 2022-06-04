@@ -126,11 +126,11 @@ cat > ${instance}-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "IND",
+      "L": "CHENNAI",
       "O": "system:nodes",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Kubernetes cluster",
+      "ST": "TAMILNADU"
     }
   ]
 }
