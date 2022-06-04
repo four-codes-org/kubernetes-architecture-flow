@@ -2,12 +2,66 @@
 
 Install etcd from pre-built binaries or from source. For details, see
 
-
-|server name| ipaddress| operating system |
+| SERVER NAME | IPADDRESS | OPERATING SYSTEM |
 |---|---|---|
-|etcd-1| 192.168.0.2| ubuntu
-|etcd-2| 192.168.0.3| ubuntu
-|etcd-3| 192.168.0.4| ubuntu
+|etcd-1| 172.31.24.9| ubuntu
+|etcd-2| 172.31.16.103| ubuntu
+|etcd-3| 172.31.20.163| ubuntu
+
+
+connect the each machine and execute the host entry
+
+```bash
+echo "172.31.24.9 etcd-1" | sudo tee -a /etc/hosts
+echo "172.31.16.103 etcd-2" | sudo tee -a /etc/hosts
+echo "172.31.20.163 etcd-3" | sudo tee -a /etc/hosts
+```
+
+_Generating certificates_
+
+In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
+
+```bash
+
+cat > ca-config.json <<EOF
+{
+  "signing": {
+    "default": {
+      "expiry": "8760h"
+    },
+    "profiles": {
+      "kubernetes": {
+        "usages": ["signing", "key encipherment", "server auth", "client auth"],
+        "expiry": "8760h"
+      }
+    }
+  }
+}
+EOF
+
+cat > ca-csr.json <<EOF
+{
+  "CN": "Kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "US",
+      "L": "Portland",
+      "O": "Kubernetes",
+      "OU": "CA",
+      "ST": "Oregon"
+    }
+  ]
+}
+EOF
+
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+
+```
+
 
 _Instllation_
 
