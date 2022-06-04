@@ -74,3 +74,12 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 ```
+
+_**Bootsrap the etcd cluster**_
+
+```bash
+systemctl daemon-reload
+systemctl enable etcd
+systemctl start etcd.service
+systemctl status -l etcd.service
+```
