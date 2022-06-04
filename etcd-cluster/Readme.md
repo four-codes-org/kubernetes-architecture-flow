@@ -109,6 +109,8 @@ EOF
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
   
 ```
+This command will generate the files `admin.csr`, `admin.pem`, and `admin-key.pem` for you.
+
 
 
 
