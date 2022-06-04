@@ -37,7 +37,7 @@ sudo mv cfssl cfssljson /usr/local/bin/
 
 ## _Generating certificates_
 
-_Certificate Authority_
+**_Certificate Authority_**
 
 In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
 
@@ -78,10 +78,13 @@ cat > ca-csr.json <<EOF
 EOF
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
-
 ```
 
 This command will generate the files `ca.csr`, `ca.pem`, and `ca-key.pem` for you.
+
+**_Client and Server Certificates_**
+
+In this section you will generate client and server certificates for each Kubernetes component and a client certificate for the Kubernetes `admin user`.
 
 
 
