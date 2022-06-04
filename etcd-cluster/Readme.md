@@ -22,17 +22,16 @@ _Generating certificates_
 In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
 
 ```bash
-
 cat > ca-config.json <<EOF
 {
   "signing": {
     "default": {
-      "expiry": "8760h"
+      "expiry": "864000h"
     },
     "profiles": {
       "kubernetes": {
         "usages": ["signing", "key encipherment", "server auth", "client auth"],
-        "expiry": "8760h"
+        "expiry": "864000h"
       }
     }
   }
@@ -48,11 +47,11 @@ cat > ca-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "IND",
+      "L": "CHENNAI",
       "O": "Kubernetes",
-      "OU": "CA",
-      "ST": "Oregon"
+      "OU": "TN",
+      "ST": "TAMILNADU"
     }
   ]
 }
