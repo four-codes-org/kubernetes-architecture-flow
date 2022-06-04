@@ -98,8 +98,8 @@ cat > admin-csr.json <<EOF
     {    
       "C": "IND",
       "L": "CHENNAI",
-      "O": "Kubernetes",
-      "OU": "TN",
+      "O": "system:masters",
+      "OU": "Kubernetes cluster",
       "ST": "TAMILNADU"
     }
   ]
