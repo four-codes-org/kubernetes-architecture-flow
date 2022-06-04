@@ -35,7 +35,9 @@ sudo mv cfssl cfssljson /usr/local/bin/
 
 ```
 
-_Generating certificates_
+## _Generating certificates_
+
+_Certificate Authority_
 
 In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
 
@@ -79,25 +81,10 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
 ```
 
+This command will generate the files ca.csr, ca.pem, and ca-key.pem for you.
 
-_Instllation_
 
-```bash
 
-ETCD_VER=v3.5.4
 
-# choose either URL
-GOOGLE_URL=https://storage.googleapis.com/etcd
-GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
-DOWNLOAD_URL=${GOOGLE_URL}
 
-curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-sudo tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /usr/local/bin/ --strip-components=1
-rm -rf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-rm -rf /usr/local/bin/README*
 
-etcd --version
-etcdctl version
-etcdutl version
-
-```
