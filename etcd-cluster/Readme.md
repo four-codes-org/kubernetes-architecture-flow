@@ -19,6 +19,25 @@ echo "172.31.20.163 etcd-3" | sudo tee -a /etc/hosts
 
 _Generating certificates_
 
+cfssl and cfssljson commands are required.
+
+```bash
+CFSSL_VERSION=1.6.1
+
+wget -q --show-progress --https-only --timestamping \
+  https://github.com/cloudflare/cfssl/releases/download/v${CFSSL_VERSION}/cfssljson_1.6.1_linux_amd64 \
+    https://github.com/cloudflare/cfssl/releases/download/v${CFSSL_VERSION}/cfssl_1.6.1_linux_amd64
+
+mv "cfssl_${CFSSL_VERSION}_linux_amd64" cfssl
+mv "cfssljson_${CFSSL_VERSION}_linux_amd64" cfssljson
+
+chmod +x cfssl cfssljson
+sudo mv cfssl cfssljson /usr/local/bin/
+
+```
+
+
+
 In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
 
 ```bash
