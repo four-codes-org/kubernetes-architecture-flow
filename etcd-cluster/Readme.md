@@ -81,7 +81,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
 ```
 
-This command will generate the files ca.csr, ca.pem, and ca-key.pem for you.
+This command will generate the files `ca.csr`, `ca.pem`, and `ca-key.pem` for you.
 
 
 
