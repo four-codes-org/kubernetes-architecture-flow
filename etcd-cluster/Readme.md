@@ -17,9 +17,7 @@ echo "172.31.16.103 etcd-2" | sudo tee -a /etc/hosts
 echo "172.31.20.163 etcd-3" | sudo tee -a /etc/hosts
 ```
 
-_Generating certificates_
-
-cfssl and cfssljson commands are required.
+_cfssl and cfssljson installation_
 
 ```bash
 CFSSL_VERSION=1.6.1
@@ -36,7 +34,7 @@ sudo mv cfssl cfssljson /usr/local/bin/
 
 ```
 
-
+_Generating certificates_
 
 In this section you will provision a Certificate Authority that can be used to generate additional TLS certificates. Generate the CA configuration file, certificate, and private key
 
