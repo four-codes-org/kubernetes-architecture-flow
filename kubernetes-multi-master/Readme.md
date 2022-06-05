@@ -154,6 +154,12 @@ etcdctl version
 etcdutl version
 
 ~~~
+3. Generate the certificate authority certificate and private key.
+ 
+~~~bash
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+~~~
+4. Verify that the ca-key.pem and the ca.pem were generated.
 
 ## Creating a certificate authority
 
@@ -202,15 +208,27 @@ etcdutl version
 }
 
 ~~~
-
-##
+2. Generate the certificate and private key.
 
 ~~~bash
+# cfssl gencert \
+-ca=ca.pem \
+-ca-key=ca-key.pem \
+-config=ca-config.json \
+-
+hostname=10.1.1.21,10.1.1.22,10.1.1.23,10.1.1.11,127.0.0.1,kubernetes.default \
+-profile=kubernetes kubernetes-csr.json | \
+- cfssljson -bare kubernetes
 
 ~~~
 
+3. Verify that the kubernetes-key.pem and the kubernetes.pem file were generated.
 
+4. Copy the certificate to each node (you can use following command to copy the files to all the nodes together or you can do scp individually).
 
+~~~bash
+for f in 10.1.1.21 10.1.1.22 10.1.1.23 10.1.1.31 10.1.1.32 10.1.1.33; do scp ca.pem kubernetes.pem kubernetes-key.pem ubuntu@f:~; done
+~~~
 
 
 
