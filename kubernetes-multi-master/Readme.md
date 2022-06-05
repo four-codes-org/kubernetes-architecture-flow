@@ -93,3 +93,59 @@ sudo systemctl status keepalived
 sudo systemctl start keepalived
 sudo systemctl stop keepalived
 ```
+
+## HA proxy 
+
+package installation
+
+~~~bash
+sudo apt-get install haproxy -y
+~~~
+
+configuration
+
+defualt .conf file for all three servers 
+
+~~~bash
+frontend fe-apiserver
+   bind 0.0.0.0:8443
+   mode tcp
+   option tcplog
+   default_backend be-apiserver
+
+backend be-apiserver
+   mode tcp
+   option tcplog
+   option tcp-check
+   balance roundrobin
+   default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+
+       server master-server-001 172.31.17.134:6443 check
+       server master-server-002 172.31.20.139:6443 check
+       server master-server-003 172.31.27.19:6443  check
+~~~
+
+service start 
+
+~~~bash
+sudo systemctl status haproxy
+sudo systemctl start haproxy
+sudo systemctl stop haproxy
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
