@@ -152,12 +152,62 @@ rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
 etcd --version
 etcdctl version
 etcdutl version
+
 ~~~
 
+## Creating a certificate authority
 
+1. Create the certificate authority configuration file.
 
+~~~bash
+# vim ca-config.json
 
+{
+  "signing": {
+    "default": {
+      "expiry": "8760h"
+    },
+    "profiles": {
+      "kubernetes": {
+        "usages": ["signing", "key encipherment", "server auth", "client auth"],
+        "expiry": "8760h"
+      }
+    }
+  }
+}
 
+~~~
+
+## Creating the certificate for the Etcd cluster
+
+1. Create the certificate signing request configuration file.
+
+~~~bash
+# vim kubernetes-csr.json
+{
+  "CN": "kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "IE",
+    "L": "Cork",
+    "O": "Kubernetes",
+    "OU": "Kubernetes",
+    "ST": "Cork Co."
+  }
+ ]
+}
+
+~~~
+
+##
+
+~~~bash
+
+~~~
 
 
 
