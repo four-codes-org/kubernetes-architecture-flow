@@ -20,15 +20,76 @@ package installation
 
 ```bash
 
+sudo apt-get update && sudo apt-get install keepalived -y
+
 ```
-configuration
+configuration 
+The configuration file for Keepalived is located at
+~~~bash
+/etc/keepalived/keepalived.conf
+~~~
 
 ```bash
+# SERVER 1 keepalived configuration
+vrrp_instance VI_1 {
+        state MASTER
+        interface eth0
+        virtual_router_id 51
+        priority 255
+        advert_int 1
+        authentication {
+              auth_type PASS
+              auth_pass 12345
+        }
+        virtual_ipaddress {
+              172.31.17.150/32
+        }
+}
 
 ```
+```bash
+# server 2 keepalived configuration
 
+vrrp_instance VI_1 {
+
+        state BACKUP
+        interface eth0
+        virtual_router_id 51
+        priority 254
+        advert_int 1
+        authentication {
+              auth_type PASS
+              auth_pass 12345
+        }
+        virtual_ipaddress {
+              172.31.17.150/32
+        }
+}
+
+```
+```bash
+# server 3 keepalived configuration
+vrrp_instance VI_1 {
+
+        state BACKUP
+        interface eth0
+        virtual_router_id 51
+        priority 254
+        advert_int 1
+        authentication {
+              auth_type PASS
+              auth_pass 12345
+        }
+        virtual_ipaddress {
+              172.31.17.150/32
+        }
+}
+
+```
 service start
 
 ```bash
-
+sudo systemctl status keepalived
+sudo systemctl start keepalived
+sudo systemctl stop keepalived
 ```
