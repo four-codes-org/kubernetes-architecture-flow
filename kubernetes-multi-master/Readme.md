@@ -6,7 +6,6 @@
 |master-server-b|172.31.17.19|ubuntu|
 |master-server-c|172.31.17.20|ubuntu|
 |ha-proxy-a|172.31.17.21|ubuntu|
-|ha-proxy-b|172.31.17.22|ubuntu|
 
 login into each node
 
@@ -15,7 +14,6 @@ echo "172.31.17.18 master-server-a" | sudo tee -a /etc/hosts
 echo "172.31.17.19 master-server-b" | sudo tee -a /etc/hosts
 echo "172.31.17.20 master-server-c" | sudo tee -a /etc/hosts
 echo "172.31.17.21 ha-proxy-a" | sudo tee -a /etc/hosts
-echo "172.31.17.22 ha-proxy-b" | sudo tee -a /etc/hosts
 ```
 keepalivd  
 
@@ -165,6 +163,9 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
+# apt install -y kubeadm=1.22.0-00 kubelet=1.22.0-00 kubectl=1.22.0-00 # specific version
+
+
 # Docker installation
 sudo apt-get remove docker docker-engine docker.io containerd runc -y
 sudo apt-get update
@@ -182,4 +183,30 @@ sudo systemctl enable docker
 # remove the containerd
 rm /etc/containerd/config.toml
 systemctl restart containerd
+
+```
+_**cluster initial commands**_
+
+```bash
+
+kubeadm init --control-plane-endpoint="172.31.17.21:6443" --upload-certs --apiserver-advertise-address=172.31.17.18 --pod-network-cidr=10.0.0.0/16
+
+```
+_**master addition commands**_
+
+```bash
+kubeadm join 172.31.17.21:6443 --token iwk9k5.j0qx4qz284k0vmg7 \
+	--discovery-token-ca-cert-hash sha256:2da0552eea637fa5d31860157d2a6578f4f3dab7f04e2ceeb65a7dc900c0305e \
+	--control-plane --certificate-key e850b9e7f0c1147548207e829be86d8c77d6ae0ad58e7e328e27126f42c04796 --apiserver-advertise-address=172.31.17.18
+```
+_**overlay network**_
+
+```bash
+
+```
+
+_**worker node adds**_
+
+```bash
+
 ```
