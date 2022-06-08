@@ -1,4 +1,4 @@
-#### haproxy with kubernetes multi master cluster
+#### Haproxy with kubernetes multi master cluster
 
 |SERVER NAME| IPADDRESS| OS |ROLE|
 |---|---|---|---|
