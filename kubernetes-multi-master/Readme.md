@@ -1,4 +1,4 @@
-## kubernetes multi master with HAProxy
+#### haproxy with kubernetes multi master cluster
 
 |SERVER NAME| IPADDRESS| OS |ROLE|
 |---|---|---|---|
