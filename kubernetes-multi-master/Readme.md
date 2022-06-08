@@ -19,7 +19,8 @@ _**haproxy installation**_
 
 ```bash
 
-sudo apt-get install haproxy -y
+sudo apt update
+sudo apt install haproxy -y
 
 ```
 
@@ -48,9 +49,10 @@ backend kubernetes-backend
 _**service start**_
 
 ```bash
+sudo systemctl restart haproxy
+sudo systemctl enable haproxy
 sudo systemctl status haproxy
-sudo systemctl start haproxy
-sudo systemctl stop haproxy
+
 ```
 
 _**kubernetes and docker packages**_
