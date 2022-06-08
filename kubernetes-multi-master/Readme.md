@@ -166,3 +166,5 @@ _**worker node adds**_
 ```bash
 
 ```
+
+![image](https://user-images.githubusercontent.com/57703276/172707575-8b6d5af0-93e7-4343-a23e-41aec5c4c7e1.png)
