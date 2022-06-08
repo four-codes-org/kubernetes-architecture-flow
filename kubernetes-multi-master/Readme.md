@@ -15,99 +15,17 @@ echo "172.31.17.19 master-server-b" | sudo tee -a /etc/hosts
 echo "172.31.17.20 master-server-c" | sudo tee -a /etc/hosts
 echo "172.31.17.21 ha-proxy-a" | sudo tee -a /etc/hosts
 ```
-keepalivd  
-
-package installation 
+_**haproxy installation**_
 
 ```bash
 
-sudo apt-get update && sudo apt-get install keepalived -y
-
-```
-configuration 
-
-The configuration file for Keepalived is located at
-
-```bash
-/etc/keepalived/keepalived.conf
-```
-
-```bash
-# SERVER 1 keepalived configuration
-vrrp_instance VI_1 {
-        state MASTER
-        interface eth0
-        virtual_router_id 51
-        priority 255
-        advert_int 1
-        authentication {
-              auth_type PASS
-              auth_pass 12345
-        }
-        virtual_ipaddress {
-              172.31.17.150/32
-        }
-}
-
-```
-```bash
-# server 2 keepalived configuration
-
-vrrp_instance VI_1 {
-
-        state BACKUP
-        interface eth0
-        virtual_router_id 51
-        priority 254
-        advert_int 1
-        authentication {
-              auth_type PASS
-              auth_pass 12345
-        }
-        virtual_ipaddress {
-              172.31.17.150/32
-        }
-}
-
-```
-```bash
-# server 3 keepalived configuration
-vrrp_instance VI_1 {
-
-        state BACKUP
-        interface eth0
-        virtual_router_id 51
-        priority 254
-        advert_int 1
-        authentication {
-              auth_type PASS
-              auth_pass 12345
-        }
-        virtual_ipaddress {
-              172.31.17.150/32
-        }
-}
-
-```
-service start
-
-```bash
-sudo systemctl status keepalived
-sudo systemctl start keepalived
-sudo systemctl stop keepalived
-```
-
-## HA proxy 
-
-package installation
-
-~~~bash
 sudo apt-get install haproxy -y
-~~~
 
-configuration
+```
 
-defualt .conf file for all three servers 
+_**configuration**_
+
+`vim /etc/haproxy/haproxy.conf`
 
 ```bash
 frontend kubernetes-frontend
@@ -127,7 +45,7 @@ backend kubernetes-backend
     server kmaster3 172.16.16.103:6443 check fall 3 rise 2
 ```
 
-service start 
+_**service start**_
 
 ```bash
 sudo systemctl status haproxy
@@ -162,9 +80,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
-
 # apt install -y kubeadm=1.22.0-00 kubelet=1.22.0-00 kubectl=1.22.0-00 # specific version
-
 
 # Docker installation
 sudo apt-get remove docker docker-engine docker.io containerd runc -y
