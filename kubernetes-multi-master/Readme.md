@@ -29,6 +29,7 @@ _**configuration**_
 `vim /etc/haproxy/haproxy.conf`
 
 ```bash
+
 global
 	log /dev/log	local0
 	log /dev/log	local1 notice
@@ -65,20 +66,20 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 
 frontend kubernetes
-  bind *:6443
-  mode tcp
-  option tcplog
-  default_backend api-server
+	bind *:6443
+	mode tcp
+	option tcplog
+	default_backend api-server
 
 backend api-server
-  option httpchk GET /healthz
-  http-check expect status 200
-  mode tcp
-  option ssl-hello-chk
-  balance roundrobin
-    server kmaster1 172.16.16.101:6443 check fall 3 rise 2
-    server kmaster2 172.16.16.102:6443 check fall 3 rise 2
-    server kmaster3 172.16.16.103:6443 check fall 3 rise 2
+	option httpchk GET /healthz
+	http-check expect status 200
+	mode tcp
+	option ssl-hello-chk
+	balance roundrobin
+		server kmaster1 172.16.16.101:6443 check fall 3 rise 2
+		server kmaster2 172.16.16.102:6443 check fall 3 rise 2
+		server kmaster3 172.16.16.103:6443 check fall 3 rise 2
 ```
 
 _**service start**_
