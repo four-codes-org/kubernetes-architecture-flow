@@ -175,5 +175,4 @@ _**kube-system pods information**_
 
 ![image](https://user-images.githubusercontent.com/57703276/172707798-5e8e3f14-cb5c-4e0e-8316-155ac9722798.png)
 
-![image](https://user-images.githubusercontent.com/57703276/172708145-1f24b80b-28d5-415f-855a-efc9c13b0030.png)
 
