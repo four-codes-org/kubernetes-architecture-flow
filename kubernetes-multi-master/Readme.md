@@ -167,4 +167,11 @@ _**worker node adds**_
 
 ```
 
+_**node information**_
+
 ![image](https://user-images.githubusercontent.com/57703276/172707575-8b6d5af0-93e7-4343-a23e-41aec5c4c7e1.png)
+
+_**kube-system pods information**_
+
+![image](https://user-images.githubusercontent.com/57703276/172707798-5e8e3f14-cb5c-4e0e-8316-155ac9722798.png)
+
