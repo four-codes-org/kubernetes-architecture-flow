@@ -179,4 +179,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo systemctl restart docker  
 sudo systemctl enable docker
 
+# remove the containerd
+rm /etc/containerd/config.toml
+systemctl restart containerd
 ```
