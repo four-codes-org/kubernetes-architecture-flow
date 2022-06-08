@@ -2,10 +2,10 @@
 
 |SERVER NAME| IPADDRESS| OS |ROLE|
 |---|---|---|---|
-|master-server-a|172.31.17.18|ubuntu| master |
-|master-server-b|172.31.17.19|ubuntu| master |
-|master-server-c|172.31.17.20|ubuntu| master |
-|ha-proxy-a|172.31.17.21|ubuntu| load balancer |
+|master-server-a|172.31.17.18|ubuntu 20.04| master |
+|master-server-b|172.31.17.19|ubuntu 20.04| master |
+|master-server-c|172.31.17.20|ubuntu 20.04| master |
+|ha-proxy-a|172.31.17.21|ubuntu 20.04| load balancer |
 
 login into each node
 
