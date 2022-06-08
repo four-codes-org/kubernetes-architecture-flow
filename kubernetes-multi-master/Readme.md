@@ -1,11 +1,11 @@
 ## kubernetes multi master
 
-|SERVER NAME| IPADDRESS| OS |
-|---|---|---|
-|master-server-a|172.31.17.18|ubuntu|
-|master-server-b|172.31.17.19|ubuntu|
-|master-server-c|172.31.17.20|ubuntu|
-|ha-proxy-a|172.31.17.21|ubuntu|
+|SERVER NAME| IPADDRESS| OS |ROLE|
+|---|---|---|---|
+|master-server-a|172.31.17.18|ubuntu| master |
+|master-server-b|172.31.17.19|ubuntu| master |
+|master-server-c|172.31.17.20|ubuntu| master |
+|ha-proxy-a|172.31.17.21|ubuntu| load balancer |
 
 login into each node
 
