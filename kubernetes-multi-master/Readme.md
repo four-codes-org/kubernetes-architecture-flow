@@ -7,7 +7,7 @@
 |master-server-c|172.31.17.20|ubuntu 20.04| master |
 |ha-proxy-a|172.31.17.21|ubuntu 20.04| load balancer |
 
-login into each node
+_**execute each node**_
 
 ```bash
 echo "172.31.17.18 master-server-a" | sudo tee -a /etc/hosts
@@ -15,6 +15,39 @@ echo "172.31.17.19 master-server-b" | sudo tee -a /etc/hosts
 echo "172.31.17.20 master-server-c" | sudo tee -a /etc/hosts
 echo "172.31.17.21 ha-proxy-a" | sudo tee -a /etc/hosts
 ```
+
+_**keepalived installtion**_
+
+```bash
+journalctl -flu keepalived
+```
+
+_**configure keepalived**_
+
+on both nodes create the health check script /etc/keepalived/check_apiserver.sh
+
+```bash
+
+VIRTUAL_IP=172.31.17.25
+
+cat >> /etc/keepalived/check_apiserver.sh <<EOF
+
+#!/usr/bin/env bash
+
+errorExit() {
+  echo "*** $@" 1>&2
+  exit 1
+}
+
+curl --silent --max-time 2 --insecure https://localhost:6443/ -o /dev/null || errorExit "Error GET https://localhost:6443/"
+if ip addr | grep -q 172.16.16.100; then
+  curl --silent --max-time 2 --insecure https://$VIRTUAL_IP:6443/ -o /dev/null || errorExit "Error GET https://$VIRTUAL_IP:6443/"
+fi
+EOF
+
+chmod +x /etc/keepalived/check_apiserver.sh
+```
+
 _**haproxy installation**_
 
 ```bash
