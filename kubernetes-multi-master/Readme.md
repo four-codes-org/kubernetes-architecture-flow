@@ -30,7 +30,7 @@ on both nodes create the health check script /etc/keepalived/check_apiserver.sh
 
 VIRTUALIP=172.31.17.25
 
-cat >> /etc/keepalived/check_apiserver.sh <<EOF
+cat > /etc/keepalived/check_apiserver.sh <<EOF
 
 #!/usr/bin/env bash
 
@@ -53,7 +53,8 @@ on both node create keepalived config /etc/keepalived/keepalived.conf
 ```bash
 VIRTUALIP=172.31.17.25
 INTERFACE=eth0
-cat >> /etc/keepalived/keepalived.conf <<EOF
+
+cat > /etc/keepalived/keepalived.conf <<EOF
 vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
