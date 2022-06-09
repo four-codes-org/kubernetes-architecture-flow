@@ -168,12 +168,10 @@ kubeadm join 172.31.17.21:6443 --token iwk9k5.j0qx4qz284k0vmg7 \
 	--discovery-token-ca-cert-hash sha256:2da0552eea637fa5d31860157d2a6578f4f3dab7f04e2ceeb65a7dc900c0305e \
 	--control-plane --certificate-key e850b9e7f0c1147548207e829be86d8c77d6ae0ad58e7e328e27126f42c04796 --apiserver-advertise-address=172.31.17.18
 ```
-_**overlay network**_
-
-https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
+[_**overlay network**_](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
 
 ```bash
-
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
 _**worker node adds**_
