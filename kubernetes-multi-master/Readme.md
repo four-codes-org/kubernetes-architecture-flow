@@ -191,3 +191,9 @@ _**kube-system pods information**_
 ![image](https://user-images.githubusercontent.com/57703276/172707798-5e8e3f14-cb5c-4e0e-8316-155ac9722798.png)
 
 
+
+[_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
