@@ -28,7 +28,7 @@ on both nodes create the health check script /etc/keepalived/check_apiserver.sh
 
 ```bash
 
-VIRTUAL_IP=172.31.17.25
+VIRTUALIP=172.31.17.25
 
 cat >> /etc/keepalived/check_apiserver.sh <<EOF
 
@@ -40,12 +40,47 @@ errorExit() {
 }
 
 curl --silent --max-time 2 --insecure https://localhost:6443/ -o /dev/null || errorExit "Error GET https://localhost:6443/"
-if ip addr | grep -q $VIRTUAL_IP; then
-  curl --silent --max-time 2 --insecure https://$VIRTUAL_IP:6443/ -o /dev/null || errorExit "Error GET https://$VIRTUAL_IP:6443/"
+if ip addr | grep -q $VIRTUALIP; then
+  curl --silent --max-time 2 --insecure https://$VIRTUALIP:6443/ -o /dev/null || errorExit "Error GET https://$VIRTUALIP:6443/"
 fi
 EOF
 
 chmod +x /etc/keepalived/check_apiserver.sh
+```
+
+`Create keepalived config /etc/keepalived/keepalived.conf`
+
+```bash
+VIRTUALIP=172.31.17.25
+INTERFACE=eth0
+cat >> /etc/keepalived/keepalived.conf <<EOF
+vrrp_script check_apiserver {
+  script "/etc/keepalived/check_apiserver.sh"
+  interval 3
+  timeout 10
+  fall 5
+  rise 2
+  weight -2
+}
+
+vrrp_instance VI_1 {
+    state BACKUP
+    interface $INTERFACE
+    virtual_router_id 1
+    priority 100
+    advert_int 5
+    authentication {
+        auth_type PASS
+        auth_pass mysecret
+    }
+    virtual_ipaddress {
+        $VIRTUALIP
+    }
+    track_script {
+        check_apiserver
+    }
+}
+EOF
 ```
 
 _**haproxy installation**_
@@ -69,7 +104,6 @@ EOF
 
 modprobe overlay
 modprobe br_netfilter
-
 ```
 
 _**configuration**_
