@@ -19,7 +19,7 @@ echo "172.31.17.21 ha-proxy-a" | sudo tee -a /etc/hosts
 _**keepalived installtion**_
 
 ```bash
-journalctl -flu keepalived
+sudo apt update && sudo apt install keepalived -y
 ```
 
 _**configure keepalived**_
@@ -48,7 +48,7 @@ EOF
 chmod +x /etc/keepalived/check_apiserver.sh
 ```
 
-`Create keepalived config /etc/keepalived/keepalived.conf`
+on both node create keepalived config /etc/keepalived/keepalived.conf
 
 ```bash
 VIRTUALIP=172.31.17.25
@@ -81,6 +81,13 @@ vrrp_instance VI_1 {
     }
 }
 EOF
+```
+_**start keepalived service**_
+
+```bash
+systemctl enable --now keepalived
+systemctl restart keepalived
+journalctl -flu keepalived
 ```
 
 _**haproxy installation**_
