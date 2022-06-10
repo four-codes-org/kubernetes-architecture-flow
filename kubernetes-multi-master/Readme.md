@@ -260,6 +260,14 @@ _**kubectl autocomplete**_
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 
+_**kubectl credential configuration**_
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
 _**cluster verification**_
 
 ```bash
