@@ -317,7 +317,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-_**Metallb installation**_
+[_**Metallb installation**_](https://metallb.universe.tf/installation/)
 
 prepare the `values.yml` file
 
@@ -332,10 +332,11 @@ configInline:
 ```
 
 ```bash
- kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl diff -f - -n kube-system
- # actually apply the changes, returns nonzero returncode on errors only
- kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
- 
+kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl diff -f - -n kube-system
+
+# actually apply the changes, returns nonzero returncode on errors only
+kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+
 helm repo add metallb https://metallb.github.io/metallb
 helm install metallb metallb/metallb  -f values.yml -n kube-system
 # if you want to upgrade the 
