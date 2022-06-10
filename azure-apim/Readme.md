@@ -13,7 +13,7 @@ _product policies_
             <choose>
                 <when condition="@((string)context.Variables["oauth2audtoken"] == "noToken")">
                     <send-request ignore-error="false" timeout="20" response-variable-name="oauth2audtoken" mode="new">
-                        <set-url>https://ky-core-001.vault.azure.net/secrets/oauth2-scopeid-for-jwtaud-key?api-version=7.0</set-url>
+                        <set-url>https://ky.vault.azure.net/secrets/oauth2-scopeid-for-jwtaud-key?api-version=7.0</set-url>
                         <set-method>GET</set-method>
                         <authentication-managed-identity resource="https://vault.azure.net" />
                     </send-request>
