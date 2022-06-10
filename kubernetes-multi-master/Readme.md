@@ -309,3 +309,35 @@ If you are experiencing problems, you may modify the instructions in the pod sec
 
 ![image](https://user-images.githubusercontent.com/57703276/173001069-f6c27c3c-2443-401c-896a-cf5390e5634b.png)
 
+helm installtion
+
+```bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+_**Metallb installation**_
+
+prepare the `values.yml` file
+
+```yml
+# values.yml
+configInline:
+  address-pools:
+   - name: default
+     protocol: layer2
+     addresses:
+     - 10.0.1.100-10.0.1.120
+```
+
+```bash
+ kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl diff -f - -n kube-system
+ # actually apply the changes, returns nonzero returncode on errors only
+ kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+ 
+helm repo add metallb https://metallb.github.io/metallb
+helm install metallb metallb/metallb  -f values.yml -n kube-system
+# if you want to upgrade the 
+helm upgrade metallb metallb/metallb  -f values.yml -n kube-system
+```
