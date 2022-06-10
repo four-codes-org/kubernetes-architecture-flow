@@ -252,6 +252,17 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 _**worker node adds**_
 
 ```bash
+# on master node
+kubeadm token list
+kubeadm token create --print-join-command
+
+# on worker node
+kubeadm join 10.0.14.125:6443 --token p6eyzb.djhxjdb1a3byup8r --discovery-token-ca-cert-hash sha256:a29929cd3a4db33c6da8aeece5d999bc535c331a3b512827497dc161151a71eb
+```
+
+_**configuration labels**_
+
+```bash
 # add Label
 kubectl label nodes worker-server-a kubernetes.io/role=worker
 # update Label
