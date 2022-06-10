@@ -5,6 +5,7 @@
 |master-server-a|172.31.17.18|ubuntu 20.04| master |
 |master-server-b|172.31.17.19|ubuntu 20.04| master |
 |master-server-c|172.31.17.20|ubuntu 20.04| master |
+|worker-server-a|172.31.17.23|ubuntu 20.04| master |
 |ha-proxy-a|172.31.17.21|ubuntu 20.04| load balancer |
 
 _**execute each node**_
