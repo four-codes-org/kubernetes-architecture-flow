@@ -325,7 +325,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-![_**Metallb installation**_](https://metallb.universe.tf/installation/)
+![_**Metallb installation**_](https://metallb.universe.tf/installation)
 
 prepare the `values.yml` file
 
@@ -350,8 +350,3 @@ helm install metallb metallb/metallb  -f values.yml -n kube-system
 # if you want to upgrade the 
 helm upgrade metallb metallb/metallb  -f values.yml -n kube-system
 ```
-
-![image](https://user-images.githubusercontent.com/57703276/173071288-a06604a8-7148-4e72-8f59-9afbd8dfd4c8.png)
-
-
-![image](https://user-images.githubusercontent.com/57703276/173071397-4d965393-f88a-403e-bdd7-dea5a75c0835.png)
