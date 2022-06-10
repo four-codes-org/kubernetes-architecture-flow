@@ -251,6 +251,21 @@ kubeadm join 172.31.17.21:6443 --token iwk9k5.j0qx4qz284k0vmg7 \
 	--control-plane --certificate-key e850b9e7f0c1147548207e829be86d8c77d6ae0ad58e7e328e27126f42c04796 \ 
 	--apiserver-advertise-address=172.31.17.18
 ```
+
+_**add the mester with existing cluster**_
+
+```bash
+# add master nodes in the cluster
+kubeadm init phase upload-certs --upload-certs
+
+> [upload-certs] Storing the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
+> [upload-certs] Using certificate key:
+> 4f9028046dc71a3b5d2370f1a7ed1526e86d67be838da802b4255e922b87cc2b
+
+# master nodes add into the existing cluster
+kubeadm token create --print-join-command --certificate-key 4f9028046dc71a3b5d2370f1a7ed1526e86d67be838da802b4255e922b87cc2b
+```
+
 [_**overlay network**_](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
 
 ```bash
