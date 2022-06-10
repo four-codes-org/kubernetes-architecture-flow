@@ -258,6 +258,8 @@ _**kubectl autocomplete**_
 
 ```bash
 echo 'source <(kubectl completion bash)' >>~/.bashrc
+# optional configuration
+kubectl completion bash >> /etc/bash_completion.d/kubectl
 ```
 
 _**kubectl credential configuration**_
