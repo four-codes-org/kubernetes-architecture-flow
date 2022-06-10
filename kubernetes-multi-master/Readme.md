@@ -254,6 +254,12 @@ kubeadm join 172.31.17.21:6443 --token iwk9k5.j0qx4qz284k0vmg7 \
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
+_**kubectl autocomplete**_
+
+```bash
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+```
+
 _**worker node adds**_
 
 ```bash
