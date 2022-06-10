@@ -14,6 +14,7 @@ _**execute each node**_
 echo "172.31.17.18 master-server-a" | sudo tee -a /etc/hosts
 echo "172.31.17.19 master-server-b" | sudo tee -a /etc/hosts
 echo "172.31.17.20 master-server-c" | sudo tee -a /etc/hosts
+echo "172.31.17.23 worker-server-c" | sudo tee -a /etc/hosts
 echo "172.31.17.21 ha-proxy-a" | sudo tee -a /etc/hosts
 ```
 
