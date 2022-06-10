@@ -306,17 +306,6 @@ _**kube-system pods information**_
 
 ![image](https://user-images.githubusercontent.com/57703276/172707798-5e8e3f14-cb5c-4e0e-8316-155ac9722798.png)
 
-[_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
-
-```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability.yaml
-```
-[_**issues in metric server**_](https://github.com/kubernetes-sigs/metrics-server/issues/196)
-
-If you are experiencing problems, you may modify the instructions in the pod section and reinstall the metric server.
-
-![image](https://user-images.githubusercontent.com/57703276/173001069-f6c27c3c-2443-401c-896a-cf5390e5634b.png)
-
 [_**helm installtion**_](https://helm.sh/docs/intro/install/)
 
 ```bash
@@ -350,3 +339,25 @@ helm install metallb metallb/metallb  -f values.yml -n kube-system
 # if you want to upgrade the 
 helm upgrade metallb metallb/metallb  -f values.yml -n kube-system
 ```
+
+[_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
+
+```yml
+# values.yml
+defaultArgs:
+  - --cert-dir=/tmp
+  - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+  - --kubelet-use-node-status-port
+  - --metric-resolution=15s
+  - --kubelet-insecure-tls
+```
+
+```bash
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm install metrics-server metrics-server/metrics-server -n kube-system -f values.yml
+# to upgrade the metrics-server
+helm upgrade metrics-server metrics-server/metrics-server -n kube-system -f values.yml
+```
+
+[_**issues in metric server**_](https://github.com/kubernetes-sigs/metrics-server/issues/196)
+
