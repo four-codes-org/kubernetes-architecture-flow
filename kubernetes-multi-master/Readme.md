@@ -234,7 +234,9 @@ _**cluster initial commands**_
 
 ```bash
 
-kubeadm init --control-plane-endpoint="172.31.17.21:6443" --upload-certs --apiserver-advertise-address=172.31.17.18 --pod-network-cidr=10.0.0.0/16
+kubeadm init --control-plane-endpoint="172.31.17.21:6443" --upload-certs \ 
+	--apiserver-advertise-address=172.31.17.18 \ 
+	--pod-network-cidr=10.0.0.0/16
 
 ```
 _**master addition commands**_
@@ -242,7 +244,8 @@ _**master addition commands**_
 ```bash
 kubeadm join 172.31.17.21:6443 --token iwk9k5.j0qx4qz284k0vmg7 \
 	--discovery-token-ca-cert-hash sha256:2da0552eea637fa5d31860157d2a6578f4f3dab7f04e2ceeb65a7dc900c0305e \
-	--control-plane --certificate-key e850b9e7f0c1147548207e829be86d8c77d6ae0ad58e7e328e27126f42c04796 --apiserver-advertise-address=172.31.17.18
+	--control-plane --certificate-key e850b9e7f0c1147548207e829be86d8c77d6ae0ad58e7e328e27126f42c04796 \ 
+	--apiserver-advertise-address=172.31.17.18
 ```
 [_**overlay network**_](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
 
