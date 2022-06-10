@@ -252,7 +252,12 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 _**worker node adds**_
 
 ```bash
-
+# add Label
+kubectl label nodes worker-server-a kubernetes.io/role=worker
+# update Label
+kubectl label --overwrite nodes <your_node> kubernetes.io/role=<your_node>
+# remove Label
+kubectl label node <node name> node-role.kubernetes.io/<role name>-
 ```
 
 _**node information**_
@@ -262,8 +267,6 @@ _**node information**_
 _**kube-system pods information**_
 
 ![image](https://user-images.githubusercontent.com/57703276/172707798-5e8e3f14-cb5c-4e0e-8316-155ac9722798.png)
-
-
 
 [_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
 
