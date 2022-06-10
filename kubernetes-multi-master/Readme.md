@@ -260,6 +260,13 @@ _**kubectl autocomplete**_
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 
+_**cluster verification**_
+
+```bash
+kubectl get cs
+kubectl cluster-info
+```
+
 _**worker node adds**_
 
 ```bash
