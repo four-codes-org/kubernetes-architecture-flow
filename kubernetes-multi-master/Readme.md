@@ -358,3 +358,10 @@ helm install metrics-server metrics-server/metrics-server -n kube-system -f valu
 # to upgrade the metrics-server
 helm upgrade metrics-server metrics-server/metrics-server -n kube-system -f values.yml
 ```
+
+_**metric server verifcation**_
+
+```bash
+kubectl top pods -A
+kubectl top nodes
+```
