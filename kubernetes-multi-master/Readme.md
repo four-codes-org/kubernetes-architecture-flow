@@ -342,6 +342,8 @@ helm upgrade metallb metallb/metallb  -f values.yml -n kube-system
 
 [_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
 
+_helm configuration_
+
 ```yml
 # values.yml
 defaultArgs:
@@ -352,6 +354,8 @@ defaultArgs:
   - --kubelet-insecure-tls
 ```
 
+_helm commands_
+
 ```bash
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 helm install metrics-server metrics-server/metrics-server -n kube-system -f values.yml
@@ -359,7 +363,7 @@ helm install metrics-server metrics-server/metrics-server -n kube-system -f valu
 helm upgrade metrics-server metrics-server/metrics-server -n kube-system -f values.yml
 ```
 
-_**metric server verifcation**_
+_metric server verifcation_
 
 ```bash
 kubectl top pods -A
