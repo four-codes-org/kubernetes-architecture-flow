@@ -121,7 +121,7 @@ _**configuration**_
 ```bash
 MASTER_SERVER_A=172.31.17.18
 MASTER_SERVER_B=172.31.17.19
-MASTER-SERVER_C=172.31.17.20
+MASTER_SERVER_C=172.31.17.20
 
 cat >  /etc/haproxy/haproxy.conf <<EOF
 global
