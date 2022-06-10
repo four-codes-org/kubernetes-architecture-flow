@@ -268,5 +268,9 @@ _**kube-system pods information**_
 [_**metric server**_](https://github.com/kubernetes-sigs/metrics-server)
 
 ```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability.yaml
 ```
+_**issues in metric server**_
+
+![image](https://user-images.githubusercontent.com/57703276/173001069-f6c27c3c-2443-401c-896a-cf5390e5634b.png)
+
