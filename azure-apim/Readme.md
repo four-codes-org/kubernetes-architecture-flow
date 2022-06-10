@@ -1,7 +1,6 @@
 _product policies_
 
 ```xml
-<!-- product policies -->
 <policies>
     <inbound>
         <retry condition="@(context.Response.StatusCode == 401)" count="2" interval="1">
