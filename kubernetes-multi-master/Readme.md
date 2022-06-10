@@ -289,7 +289,7 @@ _**kube-system pods information**_
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability.yaml
 ```
-_**issues in metric server**_
+[_**issues in metric server**_](https://github.com/kubernetes-sigs/metrics-server/issues/196)
 
 If you are experiencing problems, you may modify the instructions in the pod section and reinstall the metric server.
 
