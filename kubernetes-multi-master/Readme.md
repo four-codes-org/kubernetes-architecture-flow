@@ -118,10 +118,12 @@ modprobe br_netfilter
 
 _**configuration**_
 
-`vim /etc/haproxy/haproxy.conf`
-
 ```bash
+MASTER_SERVER_A=172.31.17.18
+MASTER_SERVER_B=172.31.17.19
+MASTER-SERVER_C=172.31.17.20
 
+cat >  /etc/haproxy/haproxy.conf <<EOF
 global
 	log /dev/log	local0
 	log /dev/log	local1 notice
@@ -169,9 +171,10 @@ backend api-server
 	mode tcp
 	option ssl-hello-chk
 	balance roundrobin
-		server kmaster1 172.16.16.101:6443 check fall 3 rise 2
-		server kmaster2 172.16.16.102:6443 check fall 3 rise 2
-		server kmaster3 172.16.16.103:6443 check fall 3 rise 2
+		server kmaster1 $MASTER_SERVER_A:6443 check fall 3 rise 2
+		server kmaster2 $MASTER_SERVER_B:6443 check fall 3 rise 2
+		server kmaster3 $MASTER_SERVER_C:6443 check fall 3 rise 2
+EOF
 ```
 
 _**service start**_
