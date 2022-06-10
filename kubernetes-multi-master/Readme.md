@@ -272,5 +272,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ```
 _**issues in metric server**_
 
+If you are experiencing problems, you may modify the instructions in the pod section and reinstall the metric server.
+
 ![image](https://user-images.githubusercontent.com/57703276/173001069-f6c27c3c-2443-401c-896a-cf5390e5634b.png)
 
