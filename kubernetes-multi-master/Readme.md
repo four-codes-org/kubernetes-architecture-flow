@@ -325,7 +325,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-[_**Metallb installation**_](https://metallb.universe.tf/installation/)
+![_**Metallb installation**_](https://metallb.universe.tf/installation/)
 
 prepare the `values.yml` file
 
