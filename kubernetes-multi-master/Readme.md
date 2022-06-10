@@ -317,7 +317,7 @@ If you are experiencing problems, you may modify the instructions in the pod sec
 
 ![image](https://user-images.githubusercontent.com/57703276/173001069-f6c27c3c-2443-401c-896a-cf5390e5634b.png)
 
-helm installtion
+[_**helm installtion**_](https://helm.sh/docs/intro/install/)
 
 ```bash
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
