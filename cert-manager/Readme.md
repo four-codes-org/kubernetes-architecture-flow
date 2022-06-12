@@ -1,4 +1,4 @@
-Certificate-manager
+_Certificate-manager_
 ---
 
 _certificate-manager helm setup_
