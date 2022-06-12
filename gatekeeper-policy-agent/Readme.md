@@ -58,7 +58,6 @@ spec:
 ```yml
 ---
 apiVersion: kyverno.io/v1
-# The `ClusterPolicy` kind applies to the entire cluster.
 kind: ClusterPolicy
 metadata:
   name: require-ns-purpose-label
