@@ -7,6 +7,8 @@ _certificate-manager helm setup_
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 helm show values jetstack/cert-manager > values.yml
+helm install cert-manager jetstack/cert-manager  --namespace cert-manager --create-namespace --set installCRDs=true
+kubectl get pods -n cert-manager
 ```
 
 _change the values yaml file according to your configuration_
