@@ -62,23 +62,15 @@ apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: require-ns-purpose-label
-# The `spec` defines properties of the policy.
 spec:
-  # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`audit`) or blocked (`enforce`).
-  validationFailureAction: enforce
-  # The `rules` is one or more rules which must be true.
   rules:
   - name: require-ns-purpose-label
-    # The `match` statement sets the scope of what will be checked. In this case, it is any `Namespace` resource.
     match:
       any:
       - resources:
           kinds:
           - Namespace
-    # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
     validate:
-      # The `message` is what gets displayed to a user if this rule fails validation and is therefore blocked.
-      message: "You must have label `purpose` with value `production` set on all new namespaces."
       # The `pattern` object defines what pattern will be checked in the resource. In this case, it is looking for `metadata.labels` with `purpose=production`.
       pattern:
         metadata:
