@@ -70,10 +70,10 @@ spec:
           kinds:
           - Namespace
     validate:
-      # The `pattern` object defines what pattern will be checked in the resource. In this case, it is looking for `metadata.labels` with `purpose=production`.
+      # The `pattern` object defines what pattern will be checked in the resource. 
+      # In this case, it is looking for `metadata.labels` with `purpose=production`.
       pattern:
         metadata:
           labels:
             purpose: production
-
 ```
