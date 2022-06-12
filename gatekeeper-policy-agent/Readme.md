@@ -31,7 +31,7 @@ helm install kyverno kyverno/kyverno -n kyverno --create-namespace
 
 **_cluster policy_**
 
-```yaml
+```yml
 ---
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
@@ -52,6 +52,10 @@ spec:
         metadata:
           labels:
             app.kubernetes.io/name: "?*"
+            
+```
+
+```yml
 ---
 apiVersion: kyverno.io/v1
 # The `ClusterPolicy` kind applies to the entire cluster.
