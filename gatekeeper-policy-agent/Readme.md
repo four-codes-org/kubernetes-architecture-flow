@@ -1,7 +1,4 @@
-**Kyverno docs**
-
-#### https://kyverno.io/docs
----
+## [Kyverno docs](https://kyverno.io/docs)
 
 **_How Kyverno works_**
 
