@@ -10,7 +10,7 @@ Initialize the control-plane node via kubeadm init and skip the installation of 
 |10.0.0.5|6443|
 
 ```bash
-kubeadm init --skip-phases=addon/kube-proxy
+kubeadm init --skip-phases=addon/kube-proxy --pod-network-cidr=192.168.0.0/16 --service-cidr=172.16.0.0/16 --service-dns-domain="rcms.io" --v=5
 ```
 Specifying this is necessary as kubeadm init is run explicitly without setting up kube-proxy and as a consequence, although it exports `KUBERNETES_SERVICE_HOST` and `KUBERNETES_SERVICE_PORT` with a ClusterIP of the kube-apiserver service to the environment, there is no kube-proxy in our setup provisioning that service. The Cilium agent therefore needs to be made aware of this information through below configuration.
 
