@@ -5,8 +5,7 @@ Cilium is open source software for transparently securing the network connectivi
 
 At the foundation of Cilium is a new Linux kernel technology called eBPF, which enables the dynamic insertion of powerful security, visibility, and networking control logic into the Linux kernel. eBPF is used to provide high-performance networking, multi-cluster and multi-cloud capabilities, advanced load balancing, transparent encryption, extensive network security capabilities, transparent observability, and much more.
 
-![image](https://user-images.githubusercontent.com/57703276/174486102-0aeb6a7f-0bad-4eb0-bd02-44c74ec5356f.png)
-
+![Architecture](https://user-images.githubusercontent.com/57703276/174486351-f29d1dce-5470-493a-ae15-38c3b799cd00.png)
 
 Initialize the control-plane node via kubeadm init and skip the installation of the kube-proxy add-on:
 
