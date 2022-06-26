@@ -16,7 +16,40 @@ kubectl -n ambassador wait --for condition=available --timeout=90s deploy -lprod
 ```
 
 
-Allow the default traffict to ingress controller 
+_enable the http access_
+
+```yml
+kubectl apply -f - <<EOF
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Listener
+metadata:
+  name: edge-stack-listener-8080
+  namespace: ambassador
+spec:
+  port: 8080
+  protocol: HTTP
+  securityModel: XFP
+  hostBinding:
+    namespace:
+      from: ALL
+---
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: example-host
+spec:
+  hostname: '*'
+  acmeProvider:
+    authority: none
+  requestPolicy:
+    insecure:
+      action: Route
+
+EOF
+```
+
+_Enable the automatically  http to https redirection_
 
 ```yml
 kubectl apply -f - <<EOF
@@ -47,20 +80,4 @@ spec:
     namespace:
       from: ALL
 EOF
-```
-
-disable the automatically redirection
-
-```yml
-apiVersion: getambassador.io/v2
-kind: Host
-metadata:
-  name: example-host
-spec:
-  hostname: '*'
-  acmeProvider:
-    authority: none
-  requestPolicy:
-    insecure:
-      action: Route
 ```
