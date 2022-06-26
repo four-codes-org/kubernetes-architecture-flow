@@ -16,7 +16,7 @@ kubectl -n ambassador wait --for condition=available --timeout=90s deploy -lprod
 ```
 
 
-_enable the http access_
+_enable the http with unsecure mode_
 
 ```yml
 kubectl apply -f - <<EOF
@@ -49,7 +49,7 @@ spec:
 EOF
 ```
 
-_Enable the automatically  http to https redirection_
+_Enable the http and  https redirection with secure mode_
 
 ```yml
 kubectl apply -f - <<EOF
