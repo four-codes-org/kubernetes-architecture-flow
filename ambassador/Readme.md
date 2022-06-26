@@ -48,3 +48,19 @@ spec:
       from: ALL
 EOF
 ```
+
+disable the automatically redirection
+
+```yml
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: example-host
+spec:
+  hostname: '*'
+  acmeProvider:
+    authority: none
+  requestPolicy:
+    insecure:
+      action: Route
+```
