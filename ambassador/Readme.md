@@ -1,4 +1,4 @@
-#### ambassador
+#### [ambassador](https://www.getambassador.io/docs/edge-stack/latest/tutorials/getting-started/)
 ---
 
 
