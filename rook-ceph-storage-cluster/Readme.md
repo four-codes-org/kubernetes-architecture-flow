@@ -167,7 +167,7 @@ parameters:
     # clusterID is the namespace where the rook cluster is running
     clusterID: rook-ceph
     # Ceph pool into which the RBD image shall be created
-    pool: replicapool
+    pool: sc-rook-ceph-block
 
     # (optional) mapOptions is a comma-separated list of map options.
     # For krbd options refer
