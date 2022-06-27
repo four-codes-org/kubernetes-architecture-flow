@@ -150,7 +150,7 @@ storageclass.yaml file
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
-  name: replicapool
+  name: sc-rook-ceph-block
   namespace: rook-ceph
 spec:
   failureDomain: host
