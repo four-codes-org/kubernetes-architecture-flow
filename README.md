@@ -10,3 +10,10 @@ to get ready for the Kubernetes integration
     4. Prometheus           - monitor
     5. Hashicorp vault      - secret management 
     6. rook-ceph            - storage cluster
+
+
+```bash
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install ingress ingress-nginx/ingress-nginx -set controller.admissionWebhooks.enabled=false -n namespace
+```
