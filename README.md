@@ -24,4 +24,6 @@ PS C:\> mkdir agent ; cd agent
 PS C:\agent> Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$HOME\Downloads\vsts-agent-win-x64-3.220.0.zip", "$PWD")
 PS C:\agent> .\config.cmd
 PS C:\agent> .\run.cmd
+
+11111111innhy3lpj3d6fqr34sbj7sb51111111cnqmpfy3kfkyyzy4jxhow72rxxxxxl53q
 ```
