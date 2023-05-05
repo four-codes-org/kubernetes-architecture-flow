@@ -17,3 +17,5 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 helm install ingress ingress-nginx/ingress-nginx -set controller.admissionWebhooks.enabled=false -n namespace
 ```
+
+https://vstsagentpackage.azureedge.net/agent/3.220.0/vsts-agent-win-x64-3.220.0.zip
