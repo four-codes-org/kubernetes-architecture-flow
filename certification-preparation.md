@@ -1,1 +1,17 @@
 ##### certification-preparation.md
+
+_etcd snapshot backup_
+```bash
+ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+     --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+     snapshot save /tmp/snapshot-pre-boot.db
+```
+
+
+_etcd snapshot restore_
+```bash
+ETCDCTL_API=3 etcdctl --endpoints=127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+     --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+     --data-dir /opt/xxx/snapshot.db \
+     snapshot restore /opt/snapshot-pre-boot.db
+```
