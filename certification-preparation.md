@@ -7,6 +7,7 @@ kubectl run web-server --image=nginx --dry-run=client
 kubectl run web-server --image=nginx
 kubectl run web-server --image=nginx --labels=production=januo --port=80 
 kubectl run web-server --image=nginx --labels=production=januo --port=80 --labels=production=januo --env=production=bca
+kubectl get pods web-server -v=6
 
 kubectl set image pod web-server web-server=httpd
 ```
