@@ -34,6 +34,12 @@ kubectl get all -l production=januo
 ```
 
 
+```console
+kubectl  get nodes --show-labels
+kubectl label nodes node-name disktype=ssd
+kubectl  get nodes --show-labels
+```
+
 _etcd snapshot backup_
 ```bash
 ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/var/lib/minikube/certs/etcd/ca.crt \
