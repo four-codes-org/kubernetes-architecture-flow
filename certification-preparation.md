@@ -33,6 +33,11 @@ kubectl expose deploy/nginx --port=80 --target-port=80
 kubectl get all -l production=januo
 ```
 
+###### _ingress service_
+```console
+kubectl create ingress web-server-svc --rule=dcm4che.januo.io/=web-server:80
+```
+
 
 ```console
 kubectl  get nodes --show-labels
