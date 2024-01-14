@@ -44,7 +44,7 @@ kubectl create ingress web-server-svc --rule=dcm4che.januo.io/=web-server:80
 kubectl create serviceaccount pvviewer
 kubectl create clusterrole pvviewer-role --verb=list --resource=PersistentVolumes
 kubectl create clusterrolebinding pvviewer-role-binding --clusterrole=pvviewer-role --serviceaccount=default:pvviewer
-kubectl auth can-i list PersistentVolumes –as system:serviceaccount:default:pvviewer
+kubectl auth can-i delete pv --as=system:serviceaccount:default:pvviewer
 ```
 
 ```console
