@@ -20,6 +20,12 @@ kubectl expose pod web-server --type=LoadBalancer --port=80
 kubectl get svc/web-server -oyaml
 ```
 
+
+```console
+kubectl create deployment nginx --image=nginx -r=3
+kubectl set image deployment nginx nginx=httpd
+```
+
 ###### list all the resources
 
 ```console
