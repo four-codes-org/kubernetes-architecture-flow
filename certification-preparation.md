@@ -24,6 +24,7 @@ kubectl get svc/web-server -oyaml
 ```console
 kubectl create deployment nginx --image=nginx -r=3
 kubectl set image deployment nginx nginx=httpd
+kubectl expose deploy/nginx --port=80 --target-port=80
 ```
 
 ###### list all the resources
