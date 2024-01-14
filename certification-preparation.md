@@ -1,5 +1,13 @@
 ##### certification-preparation.md
 
+```console
+kubectl run web-server --image=nginx --dry-run=client
+kubectl run web-server --image=nginx
+kubectl run web-server --image=nginx --labels=production=januo --port=80
+kubectl run web-server --image=nginx --labels=production=januo --port=80 --labels=production=januo
+```
+
+
 _etcd snapshot backup_
 ```bash
 ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/var/lib/minikube/certs/etcd/ca.crt \
