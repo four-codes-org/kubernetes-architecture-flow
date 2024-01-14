@@ -19,6 +19,11 @@ kubectl expose pod web-server --type=LoadBalancer --port=80
 kubectl get svc/web-server -oyaml
 ```
 
+###### list all the resources
+
+```console
+kubectl get all -l production=januo
+```
 
 
 _etcd snapshot backup_
