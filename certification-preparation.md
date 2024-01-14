@@ -1,11 +1,21 @@
 ##### certification-preparation.md
 
+###### pod information
 ```console
 kubectl run web-server --image=nginx --dry-run=client
 kubectl run web-server --image=nginx
 kubectl run web-server --image=nginx --labels=production=januo --port=80
 kubectl run web-server --image=nginx --labels=production=januo --port=80 --labels=production=januo
 ```
+
+###### service information
+```console
+kubectl expose pod web-server --port=80 --target-port=80 -oyaml --dry-run=client
+kubectl run web-server --image=nginx
+kubectl run web-server --image=nginx --labels=production=januo --port=80
+kubectl run web-server --image=nginx --labels=production=januo --port=80 --labels=production=januo
+```
+
 
 
 _etcd snapshot backup_
