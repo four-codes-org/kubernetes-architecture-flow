@@ -6,6 +6,9 @@ kubectl run web-server --image=nginx --dry-run=client
 kubectl run web-server --image=nginx
 kubectl run web-server --image=nginx --labels=production=januo --port=80
 kubectl run web-server --image=nginx --labels=production=januo --port=80 --labels=production=januo
+
+# update the docker image
+kubectl set image pod web-server web-server=httpd
 ```
 
 ###### service information
